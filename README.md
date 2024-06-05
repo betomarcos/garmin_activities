@@ -5,7 +5,9 @@
 - This file will have the list of projects as I keep working on new ones.
 - Most would use data exports from Garmin. Loaded to a local MySQL instance. 
 
-Projects
+**PROJECTS**
 - Austin Marathon:
-  - SQL file:
-  - Data file: 
+  - SQL file: _austin_marathon.sql_
+  - Data file: _new_garmin_austin.csv_
+
+
