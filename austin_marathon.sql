@@ -1,7 +1,4 @@
-select * from garmin.austin_marathon;
-
 /* 
-
 Garmin Data Analysis project: Austin Half Marathon 2024 Journey
 
 - Data Source: garmin activities export to csv. Dates are when the training program started and ending with the race day 
@@ -10,7 +7,7 @@ Garmin Data Analysis project: Austin Half Marathon 2024 Journey
 
 Data Cleanup
 - There are duplicate records. Need to find and clean them up.
-- Make the Date column a normal Date, currently is a Datetime. Don't need the time portion on this case.
+- Make the Date column a Date, currently is a Datetime. Don't need the time portion on this case.
 - Some numeric columns should have decimals (Distance_KM)
 - Remove the "Distance" column, as we are using "Distance_KM" 
 - Evaluate the time columns (Time, Avg Pace, Best Pace), to transform those into seconds. That way we can manipulate with time functions.
@@ -22,6 +19,7 @@ Next steps:
 */
 
 
+-- Data was loaded to MySQL through the Table Import Wizard.
 
 -- Update the column names and data types to be easier to handle.
 ALTER TABLE garmin.austin_marathon
@@ -71,20 +69,23 @@ order by 3 desc;
 -- what was the longest training session?
 select activity_type, activity_date, distance_km, activity_time, avg_pace
 from garmin.austin_marathon
-where activity_type = 'Running'
+where activity_type = 'Running' and activity_date <> '2024-02-18'
 order by 3 desc;
 
--- 
-select max(avg_pace) 
+-- min max AVG_pace when training running workouts
+select max(avg_pace) , min(avg_pace)
 from garmin.austin_marathon
 where activity_type = 'Running';
 
-
+-- min max activity durations
 select max(activity_time), min(activity_time)
 from garmin.austin_marathon
 where activity_type = 'Running';
 
+-- how many workouts were Strength or Yoga?
 select count(*) 
 from garmin.austin_marathon
 where activity_type in ('Strength', 'Yoga')
-group by activity_type
+group by activity_type;
+
+
