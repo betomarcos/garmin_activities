@@ -2,7 +2,7 @@
 
 - Analysis on Garmin activities data. 
 - Mostly focused on running and triathlon related activities.
-- Most would use data exports from Garmin. Loaded to a local MySQL instance.
+- Used data exports from Garmin Connect. Loaded to a local MySQL instance with the query below.
  <br />
  <br /> 
  
